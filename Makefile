@@ -16,7 +16,7 @@ test:
 
 lint:
 	black .
-	ruff check .
+	ruff check . --fix
 
 format:
 	black .

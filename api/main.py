@@ -6,7 +6,6 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 
 # from prometheus_fastapi_instrumentator import Instrumentator
-
 from api.schemas import PredictionRequest, PredictionResponse
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
