@@ -40,3 +40,4 @@ reports/*
 *.tfstate
 *.tfstate*
 *tfplan*
+*.tfvars
