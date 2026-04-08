@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+apt-get update -y
+apt-get install -y docker.io
+
+systemctl enable docker
+systemctl start docker
+
+docker pull ${docker_image}
+
+docker rm -f churn-api || true
+
+docker run --name churn-api -p ${app_port}:${app_port} ${docker_image}
