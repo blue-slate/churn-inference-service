@@ -15,8 +15,11 @@ METRICS_PATH = PROJECT_ROOT / "models" / "metrics.json"
 
 app = FastAPI(title="Customer Churn MLOps Service", version="0.1.0")
 
-Instrumentator().instrument(app).expose(app)
-
+Instrumentator(
+    should_group_status_codes=False,
+    should_instrument_requests_inprogress=True,
+    excluded_handlers=["/metrics"],
+).instrument(app).expose(app)
 
 def load_json(path: Path) -> dict:
     if not path.exists():
