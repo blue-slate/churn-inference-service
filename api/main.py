@@ -4,8 +4,8 @@ from pathlib import Path
 import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
 
-# from prometheus_fastapi_instrumentator import Instrumentator
 from api.schemas import PredictionRequest, PredictionResponse
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -15,7 +15,7 @@ METRICS_PATH = PROJECT_ROOT / "models" / "metrics.json"
 
 app = FastAPI(title="Customer Churn MLOps Service", version="0.1.0")
 
-# Instrumentator().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app)
 
 
 def load_json(path: Path) -> dict:
