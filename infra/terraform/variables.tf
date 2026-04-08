@@ -37,7 +37,13 @@ variable "instance_type" {
 variable "allowed_ssh_cidr" {
   description = "CIDR allowed to SSH into the instance"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "0.0.0.0/32"
+}
+
+variable "key_name" {
+  description = "Optional EC2 key pair name"
+  type        = string
+  default     = null
 }
 
 variable "docker_image" {
