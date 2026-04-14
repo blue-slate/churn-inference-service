@@ -1,4 +1,4 @@
-name: Delivery
+name: Build
 
 on:
   workflow_run:
