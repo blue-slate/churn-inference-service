@@ -1,6 +1,6 @@
 # Customer churn MLOps service
 
-[![CI](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/ci.yml) [![CI](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/delivery.yml/badge.svg?branch=main)](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/deploy.yml)
+[![CI](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/ci.yml) [![CI](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/delivery.yml/badge.svg?branch=main)](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/delivery.yml) [![CI](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/blue-slate/customer-churn-mlops-service/actions/workflows/deploy.yml)
 
 
 ## Overview
