@@ -1,9 +1,9 @@
 name: Deploy Infra
 
 on:
-  workflow_run:
-    workflows: ["Delivery"]
-    types: [completed]
+  # workflow_run:
+  #   workflows: ["Delivery"]
+  #   types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -12,13 +12,13 @@ permissions:
 
 jobs:
   deploy:
-    if: >
-      (github.event_name == 'workflow_dispatch') ||
-      (
-        github.event_name == 'workflow_run' &&
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.head_branch == 'main'
-      )
+    # if: >
+    #   (github.event_name == 'workflow_dispatch') ||
+    #   (
+    #     github.event_name == 'workflow_run' &&
+    #     github.event.workflow_run.conclusion == 'success' &&
+    #     github.event.workflow_run.head_branch == 'main'
+    #   )
     runs-on: ubuntu-latest
 
     env:
@@ -41,12 +41,14 @@ jobs:
           aws-region: us-west-2
       
       - name: Write backend config
+        working-directory: infra/terraform
         run: |
           cat > tfbackend.config <<'EOF'
           ${{ secrets.TF_BACKEND_CONFIG }}
           EOF
       
       - name: Write terraform runtime variables
+        working-directory: infra/terraform
         run: |
           cat > terraform.tfvars <<'EOF'
           ${{ secrets.TF_VARS }}
