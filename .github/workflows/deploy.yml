@@ -41,12 +41,14 @@ jobs:
           aws-region: us-west-2
       
       - name: Write backend config
+        working-directory: infra/terraform
         run: |
           cat > tfbackend.config <<'EOF'
           ${{ secrets.TF_BACKEND_CONFIG }}
           EOF
       
       - name: Write terraform runtime variables
+        working-directory: infra/terraform
         run: |
           cat > terraform.tfvars <<'EOF'
           ${{ secrets.TF_VARS }}
