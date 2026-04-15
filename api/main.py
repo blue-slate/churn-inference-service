@@ -21,6 +21,7 @@ Instrumentator(
     excluded_handlers=["/metrics"],
 ).instrument(app).expose(app)
 
+
 def load_json(path: Path) -> dict:
     if not path.exists():
         return {}
