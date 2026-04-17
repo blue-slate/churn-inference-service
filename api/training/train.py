@@ -25,7 +25,8 @@ METADATA_PATH = MODELS_DIR / "metadata.json"
 def load_data(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(
-            f"Dataset not found at {path}. \nPlace the Telco Customer Churn CSV in api/artifacts/data/raw/telco_customer_churn.csv"
+            f"Dataset not found at {path}. \nPlace the Telco Customer Churn CSV in "
+            "api/artifacts/data/raw/telco_customer_churn.csv"
         )
 
     df = pd.read_csv(path)
