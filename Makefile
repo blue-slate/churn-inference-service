@@ -35,7 +35,7 @@ $(VENV_STAMP): requirements.txt pyproject.toml
 	@touch $(VENV_STAMP)
 
 train: $(VENV_STAMP)
-	$(VENV_PYTHON) -m training.train
+	$(VENV_PYTHON) -m api.training.train
 
 run: $(VENV_STAMP)
 	$(VENV_UVICORN) api.api_service.main:app --host 0.0.0.0 --port 8000 --reload
