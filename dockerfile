@@ -11,7 +11,7 @@ COPY --from=builder /install /usr/local
 
 WORKDIR /app
 COPY api/api_service/ ./api/api_service
-COPY api/artifacts/models/ ./models
+COPY api/artifacts/models/ ./api/artifacts/models
 
 # Entrypoint
 

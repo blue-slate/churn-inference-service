@@ -8,10 +8,11 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from api.api_service.schemas import PredictionRequest, PredictionResponse
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MODEL_PATH = PROJECT_ROOT / "models" / "model.pkl"
-METADATA_PATH = PROJECT_ROOT / "models" / "metadata.json"
-METRICS_PATH = PROJECT_ROOT / "models" / "metrics.json"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+MODELS_DIR = PROJECT_ROOT / "api" / "artifacts" / "models"
+MODEL_PATH = MODELS_DIR / "model.pkl"
+METRICS_PATH = MODELS_DIR / "metrics.json"
+METADATA_PATH = MODELS_DIR / "metadata.json"
 
 app = FastAPI(title="Customer Churn MLOps Service", version="0.1.0")
 
@@ -59,7 +60,9 @@ def predict(payload: PredictionRequest) -> PredictionResponse:
     model = load_model()
     if model is None:
         raise HTTPException(
-            status_code=503, detail="Model artifact not found. Train the model first."
+            status_code=503,
+            detail="""Model artifact not found in "{}"."""
+            """ Train the model first.""".format(MODEL_PATH),
         )
 
     input_df = pd.DataFrame([payload.model_dump()])
