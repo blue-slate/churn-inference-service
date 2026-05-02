@@ -60,7 +60,9 @@ def predict(payload: PredictionRequest) -> PredictionResponse:
     model = load_model()
     if model is None:
         raise HTTPException(
-            status_code=503, detail="""Model artifact not found in "{}". Train the model first.""".format(MODEL_PATH)
+            status_code=503,
+            detail="""Model artifact not found in "{}"."""
+            """ Train the model first.""".format(MODEL_PATH),
         )
 
     input_df = pd.DataFrame([payload.model_dump()])
