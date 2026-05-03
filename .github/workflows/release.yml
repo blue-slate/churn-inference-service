@@ -31,6 +31,7 @@ jobs:
           fetch-depth: 0
 
       - name: Verify tag commit is on main
+        if: github.event_name != 'workflow_dispatch' || inputs.dry_run == false
         run: |
           git fetch origin main
 
