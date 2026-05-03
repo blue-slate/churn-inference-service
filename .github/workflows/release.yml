@@ -98,6 +98,12 @@ jobs:
           file: ./dockerfile
           load: true
           tags: ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.version }}
+    
+      - name: Show planned image operations
+        run: |
+          echo "Commit image: ${IMAGE_NAME}:${{ steps.vars.outputs.sha_tag }}"
+          echo "Release image: ${IMAGE_NAME}:${{ steps.vars.outputs.version }}"
+          echo "Dry run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}"
 
       - name: Push release image
         if: github.event_name != 'workflow_dispatch' || inputs.dry_run == false
