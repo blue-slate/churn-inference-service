@@ -8,10 +8,12 @@ numpy==2.4.4
 
 pydantic==2.12.5
 
-pytest==9.0.2
+pytest==9.0.3
 httpx==0.28.1
 
 ruff==0.15.9
 black==26.3.1
 
-prometheus-fastapi-instrumentator==7.1.0
+prometheus-fastapi-instrumentator==8.0.2
+
+pip-audit==2.10.1
