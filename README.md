@@ -17,6 +17,7 @@ Its goal is not to build the most complex model, but to demonstrate how an ML se
 
 - [Overview](#overview)
 - [Architecture](#architecture)
+- [Security](#security)
 - [Quickstart](#quickstart)
 - [Features](#features)
 - [CI/CD and Deployment](#cicd-and-deployment)
@@ -39,6 +40,13 @@ The project is built as a simple *end-to-end ML service** with a deployment flow
 - **Grafana** visualizes service health and performance through dashboards
 
 At a high level, the system covers the full lifecycle of an ML service: packaging, deployment, delivery, monitoring, and basic production reliability practices.
+
+## Security
+
+This project aims to follow security best practices by
+- Separating secrets from source code. Secrets used by the CI pipeline are handled through GitHub secrets and injected at runtime.
+- Using OIDC to access AWS resources. No AWS credentials are used in the respository, and the OIDC integration can be revoked at any time.
+- Scanning for vulnerabilities. Currently, the CI pipeline only checks Python dependencies for vulnerabilities, but the next steps plans to add checks for the python source code, docker base images and the final docker image.
 
 ## Quickstart
 
@@ -180,7 +188,7 @@ In the local environment, Grafana uses the default credentials.
 ## Roadmap and Future Improvements
 
 To extend the project further, the next steps would focus on reliability, scalability, and safer delivery practices:
-
+- Finish adding vulnerability scanning, by adding SAT and docker container scanning
 - Finalize monitoring integration in the **deployed environment** and add **structured logging**
 - Add **post-deployment smoke tests** to validate application health and core prediction flows
 - Introduce **automatic rollback** when a new version fails smoke tests
