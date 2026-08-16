@@ -40,14 +40,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: docker.io/doyonm/customer-churn-mlops-service
-          tags: |
-            type=raw,value=main
-            type=sha,prefix=sha-,format=short
+        - name: Extract Docker metadata
+          id: meta
+          uses: docker/metadata-action@v5
+          with:
+            images: docker.io/doyonm/customer-churn-mlops-service
+            tags: |
+              type=raw,value=main
+              type=sha,prefix=sha-,format=short
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v6
@@ -66,10 +66,15 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Extract SHA image tag
+        id: image
+        run: |
+          echo "sha_tag=$(echo '${{ steps.meta.outputs.tags }}' | grep ':sha-')" >> "$GITHUB_OUTPUT"
+
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ steps.meta.outputs.labels }}:${{ steps.meta.outputs.tags }}
+          image-ref: ${{ steps.image.outputs.sha_tag }}
           format: table
           exit-code: '0'
           ignore-unfixed: true
