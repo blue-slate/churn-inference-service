@@ -63,8 +63,8 @@ jobs:
           context: .
           push: false
           load: true
-          tags: ${{ steps.meta.outputs.labels }}
-          labels: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@master
