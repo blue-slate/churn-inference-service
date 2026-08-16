@@ -59,7 +59,6 @@ jobs:
         with:
           images: docker.io/doyonm/customer-churn-mlops-service
           tags: |
-            type=raw,value=main
             type=sha,prefix=sha-,format=short
     
       - name: Build Docker image
